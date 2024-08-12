@@ -1,0 +1,12 @@
+databaseChangeLog:
+  #create
+  - include: 
+      file: db/changelog/changes/create/01-create-books-table.yaml
+  - include:
+      file: db/changelog/changes/create/02-create-members-table.yaml
+  - include:
+      file: db/changelog/changes/create/03-create-borrowings-table.yaml
+
+  #insert
+  - include:
+      file: db/changelog/changes/insert/01-insert-into-books-table.yaml
