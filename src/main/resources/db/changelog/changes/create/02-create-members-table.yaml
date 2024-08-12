@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-members-table
+      author: Yaroslav Radevych-Vynnytskyi
+      changes:
+        - createTable:
+            tableName: members
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: started_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false

@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-into-books-table
+      author: Yaroslav Radevych-Vynnytskyi
+      changes:
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: "The Hobbit"
+              - column:
+                  name: author
+                  value: "J.R.R. Tolkien"
+              - column:
+                  name: amount
+                  value: 5
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: "1984"
+              - column:
+                  name: author
+                  value: "George Orwell"
+              - column:
+                  name: amount
+                  value: 10
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: "To Kill a Mockingbird"
+              - column:
+                  name: author
+                  value: "Harper Lee"
+              - column:
+                  name: amount
+                  value: 7
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: "The Great Gatsby"
+              - column:
+                  name: author
+                  value: "F. Scott Fitzgerald"
+              - column:
+                  name: amount
+                  value: 12
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: "Brave New World"
+              - column:
+                  name: author
+                  value: "Aldous Huxley"
+              - column:
+                  name: amount
+                  value: 8

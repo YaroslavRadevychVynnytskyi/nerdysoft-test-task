@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-borrowings-table
+      author: Yaroslav Radevych-Vynnytskyi
+      changes:
+        - createTable:
+            tableName: borrowings
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: member_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_borrowings_member
+                    references: members(id)
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_borrowings_book
+                    references: books(id)
+              - column:
+                  name: borrowed_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
