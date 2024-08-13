@@ -182,7 +182,6 @@ public class BookServiceTest {
                 10
         );
 
-        // Mock the method behavior
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
         when(bookMapper.toDto(book)).thenReturn(dto);
 
