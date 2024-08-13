@@ -1,4 +1,4 @@
-package com.application.dto;
+package com.application.dto.book;
 
 public record BookResponseDto(
         Long id,

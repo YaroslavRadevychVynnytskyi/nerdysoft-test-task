@@ -1,7 +1,8 @@
 package com.application.service.impl;
 
-import com.application.dto.BookResponseDto;
-import com.application.dto.CreateBookRequestDto;
+import com.application.dto.book.BookResponseDto;
+import com.application.dto.book.BorrowedBooksNamesAndAmountDto;
+import com.application.dto.book.CreateBookRequestDto;
 import com.application.entity.Book;
 import com.application.mapper.BookMapper;
 import com.application.repo.BookRepository;
@@ -66,6 +67,30 @@ public class BookServiceImpl implements BookService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<BookResponseDto> getBooksBorrowedBy(String memberName) {
+        return borrowingRepository.findAllBooksBorrowedByMemberName(memberName).stream()
+                .map(bookMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<String> getAllBorrowedBooksDistinctNames() {
+        return borrowingRepository.findAllBooks().stream()
+                .distinct()
+                .map(Book::getTitle)
+                .toList();
+    }
+
+    @Override
+    public List<BorrowedBooksNamesAndAmountDto> getAllBorrowedBooksNamesAndAmount() {
+        return borrowingRepository.findAllBooks().stream()
+                .distinct()
+                .map(b -> new BorrowedBooksNamesAndAmountDto(b.getTitle(),
+                        borrowingRepository.countByBookId(b.getId())))
+                .toList();
     }
 
     private Book getBookById(Long bookId) {
