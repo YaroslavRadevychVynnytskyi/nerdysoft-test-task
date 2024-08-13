@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -16,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +27,9 @@ public class Member {
     private String name;
 
     @Column(name = "started_at", nullable = false)
-    private LocalDateTime startedAt;
+    private LocalDateTime startedAt = LocalDateTime.now();
+
+    public Member(String name) {
+        this.name = name;
+    }
 }

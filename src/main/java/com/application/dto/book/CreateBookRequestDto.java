@@ -1,4 +1,4 @@
-package com.application.dto;
+package com.application.dto.book;
 
 import com.application.validation.annotation.ValidAuthor;
 import com.application.validation.annotation.ValidBook;

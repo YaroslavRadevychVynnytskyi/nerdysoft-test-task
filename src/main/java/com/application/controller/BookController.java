@@ -1,7 +1,8 @@
 package com.application.controller;
 
-import com.application.dto.BookResponseDto;
-import com.application.dto.CreateBookRequestDto;
+import com.application.dto.book.BookResponseDto;
+import com.application.dto.book.BorrowedBooksNamesAndAmountDto;
+import com.application.dto.book.CreateBookRequestDto;
 import com.application.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Book management", description = "Endpoints for library book management")
@@ -62,4 +64,26 @@ public class BookController {
         }
         return new ResponseEntity<>("Can't delete. Book is borrowed", HttpStatus.FORBIDDEN);
     }
+
+    @Operation(summary = "Get books borrowed by member",
+            description = "Retrieves all books borrowed by a specific member by name")
+    @GetMapping("/borrowed-by")
+    public ResponseEntity<List<BookResponseDto>> getBooksBorrowedBy(@RequestParam String name) {
+        return ResponseEntity.ok(bookService.getBooksBorrowedBy(name));
+    }
+
+    @Operation(summary = "Get borrowed distinct books names",
+            description = "Retrieves all borrowed distinct book names")
+    @GetMapping("/borrowed-distinct")
+    public ResponseEntity<List<String>> getAllBorrowedBooksDistinctNames() {
+        return ResponseEntity.ok(bookService.getAllBorrowedBooksDistinctNames());
+    }
+
+    @Operation(summary = "Get borrowed distinct books names and amount",
+            description = "Retrieves all borrowed distinct books names and amount of copies borrowed")
+    @GetMapping("/borrowed-distinct/amount")
+    public ResponseEntity<List<BorrowedBooksNamesAndAmountDto>> getAllBorrowedBooksNamesAndAmount() {
+        return ResponseEntity.ok(bookService.getAllBorrowedBooksNamesAndAmount());
+    }
+
 }
