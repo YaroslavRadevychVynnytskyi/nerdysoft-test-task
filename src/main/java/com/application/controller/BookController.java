@@ -42,13 +42,13 @@ public class BookController {
         return ResponseEntity.ok(bookService.getAll(pageable));
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     @Operation(summary = "Get book by id", description = "Retrieves certain book based on id")
     public ResponseEntity<BookResponseDto> getById(@PathVariable Long id) {
         return ResponseEntity.ok(bookService.getById(id));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @Operation(summary = "Update book by id", description = "Updates book based on id")
     public ResponseEntity<BookResponseDto> update(@PathVariable Long id,
                                                   @RequestBody
@@ -56,7 +56,7 @@ public class BookController {
         return ResponseEntity.ok(bookService.update(id, requestDto));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @Operation(summary = "Delete book by id", description = "Deletes book if it is not borrowed")
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
         if (bookService.deleteById(id)) {
