@@ -52,7 +52,7 @@ public class BookServiceTest {
     private BookServiceImpl bookService;
 
     @Test
-    @DisplayName("Verify the correct BookResponseDto was returned when book didn't exist in the db")
+    @DisplayName("Verify the correct BookResponseDto was returned by create() when book doesn't exist in the db")
     void create_WithFreshCreateBookRequestDto_ShouldReturnValidBookResponseDto() {
         //Given
         CreateBookRequestDto requestDto = new CreateBookRequestDto(
@@ -93,7 +93,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify the correct BookResponseDto was returned when book did exist in the db")
+    @DisplayName("Verify the correct BookResponseDto was returned by create() when book exists in the db")
     void create_WithExistingCreateBookRequestDto_ShouldIncrementBookAmount() {
         //Given
         CreateBookRequestDto requestDto = new CreateBookRequestDto(
@@ -131,7 +131,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify the correct list of BookResponseDto was returned")
+    @DisplayName("Verify the correct list of BookResponseDto was returned by getAll()")
     void getAll_AllOk_ShouldReturnCorrectListOfBookResponseDto() {
         //Given
         Book book1 = new Book();
@@ -164,7 +164,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify the BookResponseDto returned by getById is correct")
+    @DisplayName("Verify the BookResponseDto returned by getById() is correct")
     void getById_ShouldReturnCorrectBookResponseDto() {
         // Given
         Long bookId = 1L;
@@ -196,7 +196,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify the BookResponseDto returned by update is correct")
+    @DisplayName("Verify the BookResponseDto returned by update() is correct")
     void update_ShouldReturnUpdatedBookResponseDto() {
         // Given
         Long bookId = 1L;
@@ -244,7 +244,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify deleteById deletes the book when not borrowed")
+    @DisplayName("Verify deleteById() deletes the book when it is not borrowed")
     void deleteById_BookNotBorrowed_ShouldDeleteAndReturnTrue() {
         // Given
         Long bookId = 1L;
@@ -261,7 +261,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify deleteById does not delete the book when borrowed")
+    @DisplayName("Verify deleteById() does not delete the book when it is borrowed")
     void deleteById_BookBorrowed_ShouldNotDeleteAndReturnFalse() {
         // Given
         Long bookId = 1L;
@@ -278,7 +278,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify the correct list of BookResponseDto is returned for books borrowed by a member")
+    @DisplayName("Verify getBooksBorrowedBy() returns the correct list of BookResponseDto")
     void getBooksBorrowedBy_ShouldReturnCorrectListOfBookResponseDto() {
         // Given
         String memberName = "John Doe";
@@ -328,7 +328,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify the distinct list of borrowed book names is returned correctly")
+    @DisplayName("Verify getAllBorrowedBooksDistinctNames() returns the distinct list of borrowed book names correctly")
     void getAllBorrowedBooksDistinctNames_ShouldReturnCorrectListOfDistinctTitles() {
         // Given
         Book book1 = new Book();
@@ -358,7 +358,7 @@ public class BookServiceTest {
     }
 
     @Test
-    @DisplayName("Verify the correct list of BorrowedBooksNamesAndAmountDto is returned")
+    @DisplayName("Verify the correct list of BorrowedBooksNamesAndAmountDto is returned by getAllBorrowedBooksNamesAndAmount()")
     void getAllBorrowedBooksNamesAndAmount_ShouldReturnCorrectListOfDto() {
         // Given
         Book book1 = new Book();
